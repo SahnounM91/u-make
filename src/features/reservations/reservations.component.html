@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="my-4">Liste des réservations</h2>
+        </div>
+        <div class="col-6 text-right">
+            <button class="btn btn-secondary" routerLink="/">Retour à l'accueil</button>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Date</th>
+                    <th>Heure</th>
+                    <th>Food Truck</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let reservation of pagedReservations">
+                    <td>{{ reservation.id }}</td>
+                    <td>{{ reservation.firstName }}</td>
+                    <td>{{ reservation.lastName }}</td>
+                    <td>{{ reservation.reservationDate | date:'mediumDate' }}</td>
+                    <td>{{ reservation.time }}</td>
+                    <td>{{ reservation.foodTruckId }}</td>
+
+                    <td>
+                        <button class="btn btn-danger" (click)="onDeleteReservation(reservation)">
+                            Supprimer
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <p>Page {{currentPage}} / {{totalPages}}</p>
+        </div>
+        <div class="col-md-8">
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li class="page-item" [ngClass]="{disabled: currentPage === 1}">
+                        <a class="page-link" (click)="previousPage()" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item" *ngFor="let page of pages" [ngClass]="{active: currentPage === page}">
+                        <a class="page-link" (click)="setCurrentPage(page)">{{page}}</a>
+                    </li>
+                    <li class="page-item" [ngClass]="{disabled: currentPage === totalPages}">
+                        <a class="page-link" (click)="nextPage()" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

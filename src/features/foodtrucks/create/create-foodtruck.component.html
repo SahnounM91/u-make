@@ -1,0 +1,38 @@
+<h2 class="text-center mb-4">Création d'un food truck</h2>
+
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-8 col-lg-6">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-container">
+                <div class="form-group">
+                    <label for="name">Nom :</label>
+                    <input type="text" id="name" name="name" formControlName="name" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description :</label>
+                    <textarea id="description" name="description" formControlName="description" class="form-control"
+                        required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="image">URL de l'image :</label>
+                    <input type="text" id="image" name="image" formControlName="image" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Emplacement :</label>
+                    <input type="text" id="location" name="location" formControlName="location" class="form-control"
+                        required>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Ajouter</button>
+                <a routerLink="/" class="btn btn-warning">
+                    <i class="fas fa-home"></i>
+                    annuler
+                </a>
+            </form>
+        </div>
+    </div>
+</div>

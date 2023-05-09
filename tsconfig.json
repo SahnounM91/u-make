@@ -23,6 +23,10 @@
       "dom"
     ]
   },
+  "include": [
+    "src/**/*.ts", // ou le chemin correspondant à vos fichiers TypeScript
+    "src/api/**/*" // le chemin d'accès au dossier contenant le fichier generate-data.js
+  ],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,

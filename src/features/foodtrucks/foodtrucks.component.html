@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row align-items-center">
+        <div class="col-md-8 col-lg-6">
+            <h1 class="my-4">Foodtrucks</h1>
+        </div>
+        <div class="col-md-4 col-lg-3 text-md-right text-lg-left">
+            <a href="" routerLink="/foodtrucks/createfood" class="btn btn-secondary">Créer un food truck</a>
+        </div>
+        <div class="col-md-4 col-lg-3 text-md-right text-lg-left">
+            <a href="" routerLink="/reservations" class="btn btn-secondary">réservations</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-6 mb-4" *ngFor="let foodtruck of pagedFoodTrucks; let i = index">
+            <div class="card h-100">
+                <img class="card-img-top" src="{{ foodtruck.image }}" alt="{{ foodtruck.name }}">
+                <div class="card-body">
+                    <h4 class="card-title">{{ foodtruck.name }}</h4>
+                    <p class="card-text">{{ foodtruck.description }}</p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary mr-2" (click)="reserveFoodtruck(foodtruck.id)">Réserver</button>
+                    <a href="" routerLink="/foodtrucks/{{ foodtruck.id }}" class="btn btn-secondary">Voir détails</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav *ngIf="totalPages > 1">
+        <ul class="pagination justify-content-center">
+            <li class="page-item" [class.disabled]="currentPage === 1">
+                <a class="page-link" (click)="setCurrentPage(1)">Première</a>
+            </li>
+            <li class="page-item" [class.disabled]="currentPage === 1">
+                <a class="page-link" (click)="setCurrentPage(currentPage - 1)">Précédente</a>
+            </li>
+            <li class="page-item" *ngFor="let page of pages" [class.active]="currentPage === page">
+                <a class="page-link" (click)="setCurrentPage(page)">{{ page }}</a>
+            </li>
+            <li class="page-item" [class.disabled]="currentPage === totalPages">
+                <a class="page-link" (click)="setCurrentPage(currentPage + 1)">Suivante</a>
+            </li>
+            <li class="page-item" [class.disabled]="currentPage === totalPages">
+                <a class="page-link" (click)="setCurrentPage(totalPages)">Dernière</a>
+            </li>
+        </ul>
+    </nav>
+</div>
